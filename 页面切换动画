@@ -1,0 +1,72 @@
+改变app整体的页面切换效果：
+1.在清单文件中的android:theme="@style/AppTheme"修改AppTheme。
+2.AppTheme：
+<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/default_content</item>
+        <item name="android:textSize">@dimen/text_size_default</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/light_gray</item>
+        <item name="android:windowAnimationStyle">@style/Animation_Activity</item>
+    </style>
+3.android:windowAnimationStyle项代码：
+<style name="Animation_Activity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_left_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_right_out</item>
+    </style>
+4.在res文件夹下建anim文件夹
+5.创建activityOpenEnterAnimation、activityOpenExitAnimation、activityCloseEnterAnimation、activityCloseExitAnimation四个动画文件
+  分别是新页面进入的动画，旧页面退出动画，新页面退出动画，旧页面进入动画
+6.四个文件
+
+slide_left_in.xml
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="300">
+    <translate
+        android:fromXDelta="0.0%p"
+        android:toXDelta="0.0" />
+
+    <alpha
+        android:fromAlpha="0.2"
+        android:toAlpha="1"
+        />
+</set>
+
+slide_left_out.xml
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="300">
+    <translate
+        android:fromXDelta="0.0"
+        android:toXDelta="0.0" />
+
+    <alpha
+        android:fromAlpha="1"
+        android:toAlpha="0.3"
+        />
+</set>
+
+slide_right_in.xml
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="300">
+    <translate
+        android:fromXDelta="100.0%p"
+        android:toXDelta="0.0" />
+</set>
+
+slide_right_out.xml
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="300">
+    <translate
+        android:fromXDelta="0.0"
+        android:toXDelta="100.0%p" />
+
+</set>
+
+
